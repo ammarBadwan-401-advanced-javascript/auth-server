@@ -5,6 +5,7 @@ const router = express.Router();
 // const getModel = require('./middleware/getModel');
 // const user = require('./models/user-collection');
 const user = require('../auth/models/user-schema');
+const basicAuth = require('./middleware/basic');
 
 
 // router.param('model',getModel);
@@ -12,7 +13,8 @@ const user = require('../auth/models/user-schema');
 // ***************--- The Routes ---***************
 
 
-router.post('/signup', createCollection);
+router.post('/signup', signup);
+router.post('/signin',basicAuth, signin);
 // router.post('/signin', createCollection);
 
 
@@ -29,12 +31,20 @@ router.post('/signup', createCollection);
 // }
 
 
-function createCollection (req,res,next){
-  jaja
+function signup (req,res,next){
+  user
     .create(req.body)
     .then(result =>{
       res.status(201).json(result);
     }).catch(next);
+}
+
+function signin(req,res,next){
+  console.log(req.token);
+  let answer = {}
+  answer.token = req.token;
+  answer.user = {username: req.theUserInfo.username,password:req.theUserInfo.password};
+  res.status(200).json(answer);
 }
 
 module.exports = router;
