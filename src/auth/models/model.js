@@ -8,7 +8,7 @@ class Model {
 
   read(username){
     let userCheck = username ? {username} : {};
-    return this.schema.find({}).catch(err=>{return null;});
+    return this.schema.find({userCheck}).catch(err=>{return null;});
   }
 
   create(object){

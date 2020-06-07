@@ -15,6 +15,7 @@ const basicAuth = require('./middleware/basic');
 
 router.post('/signup', signup);
 router.post('/signin',basicAuth, signin);
+router.get('/users',getUsers);
 // router.post('/signin', createCollection);
 
 
@@ -41,10 +42,17 @@ function signup (req,res,next){
 
 function signin(req,res,next){
   console.log(req.token);
-  let answer = {}
+  let answer = {};
   answer.token = req.token;
   answer.user = {username: req.theUserInfo.username,password:req.theUserInfo.password};
   res.status(200).json(answer);
+}
+
+function getUsers(req,res,next){
+  user.find({})
+    .then(result=>{
+      res.status(200).json(result);
+    }).catch(next);
 }
 
 module.exports = router;
