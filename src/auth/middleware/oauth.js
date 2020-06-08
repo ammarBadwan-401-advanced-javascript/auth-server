@@ -55,11 +55,11 @@ async function getUser(remoteUser){
     password: 'hardPassword',
   };
   let checkUser = await users.find({username:record.username});
-  if (checkUser){
+  if (checkUser[0]){
     let myToken = users.generateToken(record);
     return [checkUser[0],myToken];
   } else {
-    let savedUser = await users.save(record);
+    let savedUser = await users.create(record);
     let myToken = users.generateToken(record);
     return [savedUser,myToken];
   }
