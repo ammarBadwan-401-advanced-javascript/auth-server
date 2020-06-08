@@ -6,6 +6,7 @@ const router = express.Router();
 // const user = require('./models/user-collection');
 const user = require('../auth/models/user-schema');
 const basicAuth = require('./middleware/basic');
+const OAuthMiddleware = require('./middleware/oauth');
 
 
 // router.param('model',getModel);
@@ -16,6 +17,8 @@ const basicAuth = require('./middleware/basic');
 router.post('/signup', signup);
 router.post('/signin',basicAuth, signin);
 router.get('/users',getUsers);
+router.get('/oauth',OAuthMiddleware,oAuth);
+// router.get('/',mainPage);
 // router.post('/signin', createCollection);
 
 
@@ -53,6 +56,10 @@ function getUsers(req,res,next){
     .then(result=>{
       res.status(200).json(result);
     }).catch(next);
+}
+
+function oAuth(req,res,next){
+  res.status(200).send(req.token);
 }
 
 module.exports = router;

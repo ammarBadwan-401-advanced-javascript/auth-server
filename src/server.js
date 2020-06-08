@@ -16,6 +16,8 @@ const apiRouter = require('./auth/router');
 
 
 // Global Middleware
+app.use(express.static('./src/public'));
+app.set('view engine', 'html');
 app.use(express.json());
 app.use(cors());
 app.use(timeStamp);
