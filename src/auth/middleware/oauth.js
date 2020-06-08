@@ -6,11 +6,11 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 // GitHub route for the login token
-const tokenServerUrl = 'https://github.com/login/oauth/access_token';
+const TOKEN_SERVER = process.env.TOKEN_SERVER;
 // GitHub route for the user info
-const remoteUserApi = 'https://api.github.com/user';
+const API_USER = process.env.API_USER;
 
-const API_SERVER = 'http://localhost:3000/oauth'; 
+const API_SERVER = process.env.API_SERVER; 
 
 /* Steps: 1- login with superagent and get the tokem 
         2- give that token to get the user 
@@ -35,7 +35,7 @@ module.exports = async (req,res,next) =>{
 };
 
 async function getToken(code){
-  let tokenResponse = await superagent.post(tokenServerUrl).send({
+  let tokenResponse = await superagent.post(TOKEN_SERVER).send({
     client_id: CLIENT_ID,
     client_secret: CLIENT_SECRET,
     redirect_uri: API_SERVER,
@@ -45,9 +45,8 @@ async function getToken(code){
 }
 
 async function getRemoteUserInfo(token){
-  // "Authorization: token OAUTH-TOKEN" https://api.github.com/user
-  let theUser = await superagent.get(remoteUserApi).set('Authorization',`token ${token}`).set('user-agent','express-app');
-  return theUser.body;  // will return user obj + repos
+  let theUser = await superagent.get(API_USER).set('Authorization',`token ${token}`).set('user-agent','express-app');
+  return theUser.body;
 }
 
 async function getUser(remoteUser){
