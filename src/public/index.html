@@ -17,11 +17,9 @@
             scope: 'read:user',
             state: 'oauthstate'
         }
-        // encodeURIComponent
         let QueryString = Object.keys(options).map((key)=> {
             return `${key}=` + encodeURIComponent(options[key])
-        }).join("&"); // pairs key=value&ley2=value2
-        // uri+ QS
+        }).join("&");
         let authURL = `${URL}?${QueryString}`;
 
         let link = document.getElementById("oauth");
