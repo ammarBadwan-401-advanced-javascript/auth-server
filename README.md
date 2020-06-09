@@ -1,4 +1,4 @@
-# LAB - 11
+# LAB - 12
 
 ## Authentication
 
@@ -6,13 +6,14 @@
 
 ### Links and Resources
 
-- [Pull Request](https://github.com/ammarBadwan-401-advanced-javascript/auth-server/pull/1)
+- [Pull Request](https://github.com/ammarBadwan-401-advanced-javascript/auth-server/pull/2)
 - [GitHub Actions CI](https://github.com/ammarBadwan-401-advanced-javascript/auth-server/actions)
 
 ### Modules
 
 * `./src/server.js`
 * `./src/middleware/basic.js`
+* `./src/middleware/oauth.js`
 * `./src/auth/models/user-schema.js`
 * `./src/auth/router.js`
 * `./src/404.js`
@@ -30,6 +31,7 @@
 * For the routes:
 * For **GET**: `localhost:PORT/users` loads all users.
 * For **POST**: `localhost:PORT/signup` to sign a new account , `localhost:PORT/signin`, to sign into an account.
+* `http://localhost:3000/` use login by auth with github.
 
 ### Tests
 
@@ -37,4 +39,4 @@
 * Unit test: `npm test`.
 
 ### UML 
-* Coming soon!
+* ![Auth UML](./assets/auth-uml.jpg)

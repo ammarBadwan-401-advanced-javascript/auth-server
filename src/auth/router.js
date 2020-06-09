@@ -6,6 +6,7 @@ const router = express.Router();
 // const user = require('./models/user-collection');
 const user = require('../auth/models/user-schema');
 const basicAuth = require('./middleware/basic');
+const OAuthMiddleware = require('./middleware/oauth');
 
 
 // router.param('model',getModel);
@@ -16,6 +17,8 @@ const basicAuth = require('./middleware/basic');
 router.post('/signup', signup);
 router.post('/signin',basicAuth, signin);
 router.get('/users',getUsers);
+router.get('/oauth',OAuthMiddleware,oAuth);
+// router.get('/',mainPage);
 // router.post('/signin', createCollection);
 
 
@@ -36,12 +39,17 @@ function signup (req,res,next){
   user
     .create(req.body)
     .then(result =>{
-      res.status(201).json(result);
+      let answer = {};
+      answer.token = user.generateToken(result);
+      answer.user = {username:result.username, password:result.password};
+
+      res.status(201).json(answer);
     }).catch(next);
 }
 
 function signin(req,res,next){
   console.log(req.token);
+  res.cookie('token',req.token);
   let answer = {};
   answer.token = req.token;
   answer.user = {username: req.theUserInfo.username,password:req.theUserInfo.password};
@@ -53,6 +61,10 @@ function getUsers(req,res,next){
     .then(result=>{
       res.status(200).json(result);
     }).catch(next);
+}
+
+function oAuth(req,res,next){
+  res.status(200).send(req.token);
 }
 
 module.exports = router;
