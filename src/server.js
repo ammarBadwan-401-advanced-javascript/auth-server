@@ -13,6 +13,7 @@ const logger = require('./middleware/logger');
 const errorHandler = require('./middleware/500');
 const notFoundHandler = require('./middleware/404');
 const apiRouter = require('./auth/router');
+const extraRoutes = require('./extra-routes');
 
 
 // Global Middleware
@@ -26,6 +27,7 @@ app.use(logger);
 
 // Using the Routers modules
 app.use(apiRouter);
+app.use(extraRoutes);
 
 
 // Not found handler
