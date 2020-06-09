@@ -3,6 +3,7 @@
 const bcrypt =  require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const TOKEN_TIMEOUT = process.env.TOKEN_TIMEOUT;
 const SECRET = process.env.SECRET;
 
 const users = mongoose.Schema({
@@ -24,7 +25,7 @@ users.statics.authenticateBasic = async function(username,password){
 };
 
 users.statics.generateToken = function(user){
-  let token = jwt.sign({username: user.username},SECRET,{expiresIn:'15m'});
+  let token = jwt.sign({username: user.username},SECRET,{expiresIn:TOKEN_TIMEOUT});
   return token;
 };
 
