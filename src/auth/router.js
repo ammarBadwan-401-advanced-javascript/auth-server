@@ -48,6 +48,7 @@ function signup (req,res,next){
 
 function signin(req,res,next){
   console.log(req.token);
+  res.cookie('token',req.token);
   let answer = {};
   answer.token = req.token;
   answer.user = {username: req.theUserInfo.username,password:req.theUserInfo.password};
