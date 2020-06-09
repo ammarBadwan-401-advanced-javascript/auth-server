@@ -37,4 +37,4 @@
 * Unit test: `npm test`.
 
 ### UML 
-* Coming soon!
+* ![Auth UML](./assets/auth-uml.jpg)
