@@ -6,7 +6,7 @@
 
 ### Links and Resources
 
-- [Pull Request](https://github.com/ammarBadwan-401-advanced-javascript/auth-server/pull/1)
+- [Pull Request](https://github.com/ammarBadwan-401-advanced-javascript/auth-server/pull/3)
 - [GitHub Actions CI](https://github.com/ammarBadwan-401-advanced-javascript/auth-server/actions)
 
 ### Modules
