@@ -2,7 +2,6 @@
 
 const express = require('express');
 const router = express.Router();
-const user = require('./auth/models/user-schema');
 const bearerMiddleware = require('./auth/middleware/bearer-auth');
 
 

@@ -39,7 +39,10 @@ function signup (req,res,next){
   user
     .create(req.body)
     .then(result =>{
-      res.status(201).json(result);
+      let answer = {};
+      answer.token = user.generateToken(result);
+      answer.user = {username:result.username, password:result.password};
+      res.status(201).json(answer);
     }).catch(next);
 }
 

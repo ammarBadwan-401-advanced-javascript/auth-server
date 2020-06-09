@@ -7,7 +7,7 @@ const SECRET = process.env.SECRET;
 
 const users = mongoose.Schema({
   username: { type : String , unique : true, required : true ,index: true},
-  password:{type:String,require:true},
+  password:{type:String,required:true},
 });
 
 
@@ -24,7 +24,7 @@ users.statics.authenticateBasic = async function(username,password){
 };
 
 users.statics.generateToken = function(user){
-  let token = jwt.sign({username: user.username},SECRET);
+  let token = jwt.sign({username: user.username},SECRET,{expiresIn:'15m'});
   return token;
 };
 
@@ -38,11 +38,8 @@ users.statics.verifyToken = function (token){
     console.log('the decoded value is: ');
     console.log(decoded);
     let username = decoded.username;
-    console.log('before')
     let theUser = await mongoose.model('users',users).find({username:username});
-    console.log('after')
-    console.log(theUser)
-
+    console.log(theUser);
 
     if(theUser[0]){
       return Promise.resolve(decoded);
