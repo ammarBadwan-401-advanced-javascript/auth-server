@@ -9,7 +9,6 @@ module.exports = (role) => {
       } else {
         next('Access Denied');
       }
-      next();
     } catch(e) {
       next('An error occured: ' + e);
     }

@@ -1,4 +1,4 @@
-# LAB - 13
+# LAB - 14
 
 ## Authentication
 
@@ -6,7 +6,7 @@
 
 ### Links and Resources
 
-- [Pull Request](https://github.com/ammarBadwan-401-advanced-javascript/auth-server/pull/4)
+- [Pull Request](https://github.com/ammarBadwan-401-advanced-javascript/auth-server/pull/5)
 - [GitHub Actions CI](https://github.com/ammarBadwan-401-advanced-javascript/auth-server/actions)
 
 ### Modules
@@ -15,6 +15,7 @@
 * `./src/auth/middleware/basic.js`
 * `./src/auth/middleware/oauth.js`
 * `./src/auth/middleware/bearer-auth.js`
+* `./src/auth/middleware/authorize.js`
 * `./src/auth/models/user-schema.js`
 * `./src/auth/router.js`
 * `./src/extra-routes.js`
@@ -35,6 +36,10 @@
 * For **POST**: `localhost:PORT/signup` to sign a new account , `localhost:PORT/signin`, to sign into an account.
 * `http://localhost:3000/` use login by auth with github.
 * For  **GET** A Bearer token connection with `/secret`, after getting the login/signup token, you can send that token as a Bearer token to access logged-in only routes, with the route `http://localhost:3000/secret`.
+
+* Special rights paths (AC), all **GET**
+* Routes: `/read /add /change /remove`
+* Create a user with the following roles: `'regular','writer', 'editor', 'admin'`.
 
 ### Tests
 
