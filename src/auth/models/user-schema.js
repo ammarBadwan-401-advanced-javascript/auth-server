@@ -9,7 +9,15 @@ const SECRET = process.env.SECRET;
 const users = mongoose.Schema({
   username: { type : String , unique : true, required : true ,index: true},
   password:{type:String,required:true},
+  role:{type:String, enum:['regular','writer', 'editor', 'admin'], default:'regular'},
 });
+
+let roles = {
+  admin: ['read','create','update','delete'],
+  editor: ['read','create','update'],
+  writer: ['read','create'],
+  regular: ['read'],
+};
 
 
 
@@ -25,7 +33,7 @@ users.statics.authenticateBasic = async function(username,password){
 };
 
 users.statics.generateToken = function(user){
-  let token = jwt.sign({username: user.username},SECRET,{expiresIn:TOKEN_TIMEOUT});
+  let token = jwt.sign({username: user.username , role:roles[user.role]},SECRET,{expiresIn:TOKEN_TIMEOUT});
   return token;
 };
 
