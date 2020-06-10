@@ -3,8 +3,6 @@
 
 module.exports = (role) => {
   return (req,res,next) => {
-    console.log('user object');
-    console.log(req.user);
     try {
       if(req.user.role.includes(role)){
         next();
