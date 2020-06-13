@@ -25,7 +25,7 @@ users.statics.authenticateBasic = async function(username,password){
 };
 
 users.statics.generateToken = function(user){
-  let token = jwt.sign({username: user.username},SECRET,{expiresIn:TOKEN_TIMEOUT});
+  let token = jwt.sign({username: user.username,_id:user._id},SECRET,{expiresIn:TOKEN_TIMEOUT});
   return token;
 };
 
