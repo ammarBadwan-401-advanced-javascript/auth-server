@@ -33,7 +33,7 @@ users.statics.authenticateBasic = async function(username,password){
 };
 
 users.statics.generateToken = function(user){
-  let token = jwt.sign({username: user.username , role:roles[user.role]},SECRET,{expiresIn:TOKEN_TIMEOUT});
+  let token = jwt.sign({username: user.username ,_id:user._id,role:roles[user.role]},SECRET,{expiresIn:TOKEN_TIMEOUT});
   return token;
 };
 
