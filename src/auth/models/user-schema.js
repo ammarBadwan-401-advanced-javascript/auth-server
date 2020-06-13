@@ -3,7 +3,7 @@
 const bcrypt =  require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
-const SECRET = process.env.SECRET;
+// const SECRET = process.env.SECRET;
 
 const users = mongoose.Schema({
   username: { type : String , unique : true, required : true ,index: true},
@@ -21,7 +21,7 @@ users.statics.authenticateBasic = async function(username,password){
 };
 
 users.statics.generateToken = function(user){
-  let token = jwt.sign({username: user.username},SECRET);
+  let token = jwt.sign({username: user.username},'hd565455sdfawe5jry8nbv5yu');
   return token;
 };
 
