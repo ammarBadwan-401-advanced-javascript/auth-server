@@ -8,9 +8,9 @@ const permissions = require('./auth/middleware/authorize');
 
 router.get('/secret', bearerMiddleware,secret);
 router.get('/read',bearerMiddleware,permissions('read'), read );
-router.get('/add',bearerMiddleware,permissions('create'), add );
-router.get('/change',bearerMiddleware,permissions('update'), change );
-router.get('/remove',bearerMiddleware,permissions('delete'), remove );
+router.post('/add',bearerMiddleware,permissions('create'), add );
+router.put('/change',bearerMiddleware,permissions('update'), change );
+router.delete('/remove',bearerMiddleware,permissions('delete'), remove );
 
 
 function read(req,res,next){
